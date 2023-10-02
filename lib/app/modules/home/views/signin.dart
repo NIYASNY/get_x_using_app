@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get_x_project/app/modules/home/views/image.dart';
-import 'package:get_x_project/app/modules/home/views/my_button.dart';
+import 'package:get_x_project/app/commonwidgets/image.dart';
+import 'package:get_x_project/app/commonwidgets/my_button.dart';
 import 'package:get_x_project/app/modules/home/views/textfield.dart';
 import 'package:lottie/lottie.dart';
-// import 'package:getx_using_app/utils/constants/image.dart';
-// import 'package:getx_using_app/utils/constants/mybutton.dart';
-// import 'package:getx_using_app/utils/constants/textfield.dart';
 
 class Signin extends StatefulWidget {
   const Signin({super.key});
