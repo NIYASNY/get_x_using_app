@@ -4,7 +4,8 @@ import 'package:get_x_project/app/modules/home/views/mywidget.dart';
 import 'package:get_x_project/app/modules/home/views/signin.dart';
 import 'app/routes/app_pages.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     const MyApp(),
   );
@@ -15,12 +16,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'GetX_App',
       routes: {
         '/': (context) => Signin(),
-        'widget':(context) => MyWidget(),
+        'widget': (context) => MyWidget(),
       },
     );
   }

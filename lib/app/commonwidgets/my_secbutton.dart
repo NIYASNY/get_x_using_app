@@ -14,7 +14,6 @@ class MyHomeButton extends StatelessWidget {
         width: 100,
         height: 50,
         decoration: BoxDecoration(
-          
           borderRadius: BorderRadius.circular(10),
           color: primaryClr,
         ),
@@ -22,7 +21,6 @@ class MyHomeButton extends StatelessWidget {
           label,
           style: TextStyle(
             color: Colors.white,
-
           ),
         ),
       ),

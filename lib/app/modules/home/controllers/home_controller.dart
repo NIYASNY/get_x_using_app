@@ -1,23 +1,34 @@
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:get_x_project/app/model/database.dart';
+import 'package:get_x_project/app/model/task.dart';
 
 class HomeController extends GetxController {
-  //TODO: Implement HomeController
+  final RxList tasklist = <Task>[].obs;
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  Future<void> getTask() async {
+    final List<Map<String, dynamic>> tasks = await DbHelper().quaryall();
+    tasklist.assignAll(tasks.map((data) => Task.fromMap(data)).toList());
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  addTask(Task task) async {
+    await DbHelper().insertTask(task);
+    tasklist.add(task);
+    getTask();
   }
 
-  @override
-  void onClose() {
-    super.onClose();
+  deleteTask(int? id) async {
+    await DbHelper().delete(id!);
+    getTask();
   }
 
-  void increment() => count.value++;
+  deleteAllTasks() async {
+    await DbHelper().deleteAllTasks();
+    getTask();
+  }
+
+  Update(int? id) async {
+    await DbHelper().update(id!);
+    getTask();
+  }
 }

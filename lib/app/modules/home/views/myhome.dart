@@ -6,24 +6,28 @@ class MyHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('asfdsad')
-                ],
-              ),
-            ),
-            MyHomeButton(label: "+ Add Task", onTap: () => null)
-          ],
-        )
-      ],
+    return Container(
+      
     );
+    // return Column(
+    //   children: [
+    // Row(
+    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //   children: [
+    //     Container(
+    //       margin: const EdgeInsets.symmetric(horizontal: 20),
+    //       child: Column(
+    //         crossAxisAlignment: CrossAxisAlignment.start,
+    //         children: [Text('asfdsad')],
+    //       ),
+    //     ),
+    //     Padding(
+    //       padding: const EdgeInsets.only(right: 15, top: 10),
+    //       child: MyHomeButton(label: "+ Add Task", onTap: () => null),
+    //     )
+    //   ],
+    // )
+    //   ],
+    // );
   }
 }

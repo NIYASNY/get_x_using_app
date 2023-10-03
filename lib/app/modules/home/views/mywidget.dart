@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_x_project/app/modules/home/views/addtaskpage.dart';
 import 'package:get_x_project/app/modules/home/views/myhome.dart';
+import 'package:get_x_project/app/modules/home/views/signin.dart';
 
 class MyWidget extends StatefulWidget {
   const MyWidget({super.key});
@@ -17,15 +19,27 @@ class _MyWidgetState extends State<MyWidget> {
     return Scaffold(
       appBar: AppBar(),
       drawer: Drawer(
-        backgroundColor: context.theme.backgroundColor,
+        // backgroundColor: context.theme.backgroundColor,
         child: ListView(
           children: <Widget>[
             GestureDetector(
               onTap: () {},
             ),
-            MyDrawerList(),
+            MyDrawerList()
           ],
         ),
+        // child: ListView(
+        //   children: <Widget>[
+        //     GestureDetector(
+        //       onTap: () {},
+        //     ),
+        //     MyDrawerList(),
+        //   ],
+        // ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Get.to(AddTaskPage()),
+        child: Icon(Icons.add),
       ),
       body: MyHome(),
     );
