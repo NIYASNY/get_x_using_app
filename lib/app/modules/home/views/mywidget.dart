@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_x_project/app/modules/home/controllers/home_controller.dart';
 import 'package:get_x_project/app/modules/home/views/addtaskpage.dart';
 import 'package:get_x_project/app/modules/home/views/myhome.dart';
 import 'package:get_x_project/app/modules/home/views/signin.dart';
@@ -12,7 +13,14 @@ class MyWidget extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<MyWidget> {
+  final HomeController _taskController = Get.put(HomeController());
   var currentPage = DrawerSection.dashboard;
+
+  // @override
+  // void initState() {
+  //   _taskController.getTask();
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {

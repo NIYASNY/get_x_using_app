@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_x_project/app/model/database.dart';
 import 'package:get_x_project/app/modules/home/views/mywidget.dart';
 import 'package:get_x_project/app/modules/home/views/signin.dart';
 import 'app/routes/app_pages.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await DBHelper.initDb();
   runApp(
     const MyApp(),
   );
