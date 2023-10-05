@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_x_project/app/modules/home/controllers/home_controller.dart';
+import 'package:get_x_project/app/modules/home/controllers/theme/theme.dart';
 import 'package:get_x_project/app/modules/home/views/addtaskpage.dart';
 import 'package:get_x_project/app/modules/home/views/myhome.dart';
 import 'package:get_x_project/app/modules/home/views/signin.dart';
+import 'package:intl/intl.dart';
 
 class MyWidget extends StatefulWidget {
   const MyWidget({super.key});
@@ -49,7 +51,33 @@ class _MyWidgetState extends State<MyWidget> {
         onPressed: () => Get.to(AddTaskPage()),
         child: Icon(Icons.add),
       ),
-      body: MyHome(),
+      body: Column(
+        children: [
+          _appTaskbar(),
+        ],
+      ),
+    );
+  }
+
+  _appTaskbar() {
+    return Container(
+      margin: const EdgeInsets.only(left: 20, right: 20, top: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  DateFormat.yMMMMd().format(DateTime.now()),
+                  style: subHeadingStyle,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 

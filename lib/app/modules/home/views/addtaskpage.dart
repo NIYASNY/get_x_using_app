@@ -16,13 +16,16 @@ class AddTaskPage extends StatefulWidget {
 }
 
 class _AddTaskPageState extends State<AddTaskPage> {
-  final HomeController _homeController = Get.put(HomeController());
-  final _formkey = GlobalKey<FormState>();
-
-  final TextEditingController _notecontroller = TextEditingController();
   final TextEditingController _titlecontroller = TextEditingController();
-  final TextEditingController _placecontroller = TextEditingController();
-  final TextEditingController _addresscontroller = TextEditingController();
+  final TextEditingController _notecontroller = TextEditingController();
+  DateTime _selecteddate = DateTime.now();
+  // final HomeController _homeController = Get.put(HomeController());
+  // final _formkey = GlobalKey<FormState>();
+
+  // final TextEditingController _notecontroller = TextEditingController();
+  // final TextEditingController _titlecontroller = TextEditingController();
+  // final TextEditingController _placecontroller = TextEditingController();
+  // final TextEditingController _addresscontroller = TextEditingController();
   // final TextEditingController _positioncontroller = TextEditingController();
   // final TextEditingController _placecontroller = TextEditingController();
   // final TextEditingController _addresscontroller = TextEditingController();
@@ -36,73 +39,68 @@ class _AddTaskPageState extends State<AddTaskPage> {
         child: Padding(
           padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
           child: SingleChildScrollView(
-            child: Form(
-              key: _formkey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Add Task",
-                    style: HeadingStyle,
-                  ),
-                  MyInputField(
-                    title: 'Name',
-                    hint: 'Enter your name',
-                    controller: _notecontroller,
-                  ),
-                  MyInputField(
-                    title: 'Age',
-                    hint: 'Enter age here',
-                    controller: _titlecontroller,
-                  ),
-                  MyInputField(
-                    title: 'Position',
-                    hint: 'Enter your position',
-                    // controller: _positioncontroller,
-                  ),
-                  MyInputField(
-                    title: 'Date',
-                    hint: DateFormat.yMd().format(_selectedDate),
-                    widget: IconButton(
-                        onPressed: () {
-                          // _getDateFromUser();
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Add Task",
+                  style: HeadingStyle,
+                ),
+                MyInputField(
+                  title: 'Title',
+                  hint: 'Enter your title',
+                  controller: _titlecontroller,
+                ),
+                MyInputField(
+                  title: 'Npte',
+                  hint: 'Enter your note',
+                  controller: _notecontroller,
+                ),
+                MyInputField(
+                  title: 'Date',
+                  hint: DateFormat.yMd().format(_selectedDate),
+                  widget: IconButton(
+                      onPressed: () {
+                        _getDatefromuser();
+                        print('hi there');
+                        // _getDateFromUser();
+                      },
+                      icon: Icon(Icons.calendar_today_outlined)),
+                ),
+                MyInputField(
+                  title: 'Place',
+                  hint: 'Enter your place',
+                  // controller: _placecontroller,
+                ),
+                MyInputField(
+                  title: 'Address',
+                  hint: 'Enter your Address',
+                  // controller: _addresscontroller,
+                ),
+                SizedBox(
+                  height: 18,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    // MyButton(label: 'Create Task', onTap: () => _validadata())
+                    TextButton(
+                        onPressed: () async {
+                          _validadata();
+                          // if (_formkey.currentState!.validate()) {
+                          //   final Task task = Task();
+                          //   _addTaskToDb(task);
+                          //   await _taskcontroller.addTask(task);
+                          //   Get.back();
+                          // }
                         },
-                        icon: Icon(Icons.calendar_today_outlined)),
-                  ),
-                  MyInputField(
-                    title: 'Place',
-                    hint: 'Enter your place',
-                    // controller: _placecontroller,
-                  ),
-                  MyInputField(
-                    title: 'Address',
-                    hint: 'Enter your Address',
-                    // controller: _addresscontroller,
-                  ),
-                  SizedBox(
-                    height: 18,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      TextButton(
-                          onPressed: () async {
-                            _validatedata();
-                            // if (_formkey.currentState!.validate()) {
-                            //   final Task task = Task();
-                            //   _addTaskToDb(task);
-                            //   await _taskcontroller.addTask(task);
-                            //   Get.back();
-                            // }
-                          },
-                          child: Text(
-                            'Create Task',
-                            style: HeadingStyle,
-                          ))
-                    ],
-                  )
-                ],
-              ),
+                        child: Text(
+                          'Create Task',
+                          style: HeadingStyle,
+                        ))
+                  ],
+                )
+              ],
             ),
           ),
         ),
@@ -110,51 +108,54 @@ class _AddTaskPageState extends State<AddTaskPage> {
     );
   }
 
-  // _addTaskToDb(Task task) {
-  //   task.title = 0;
-  //   task.name = _namecontroller.text;
-  //   task.age = _agecontroller.toString();
-  //   task.position = _positioncontroller.text;
-  //   task.place = _placecontroller.text;
-  //   task.address = _addresscontroller.text;
-  // }
-
-  _addTasktoDb() async {
-    int value = await _homeController.addTask();
-    task:
-    Task(
-      note: _notecontroller.text,
-      title: _titlecontroller.text,
-      date: DateFormat.yMd().format(_selectedDate),
-      place: _placecontroller.text,
-      address: _addresscontroller.text,
-    );
-    print('My id is $value');
-  }
-
-  _validatedata() {
-    if (_notecontroller.text.isNotEmpty && _titlecontroller.text.isNotEmpty) {
-      _addTasktoDb();
+  _validadata() {
+    if (_titlecontroller.text.isNotEmpty && _notecontroller.text.isNotEmpty) {
+      //add databa...
       Get.back();
-    } else if (_notecontroller.text.isEmpty || _titlecontroller.text.isEmpty) {
-      Get.snackbar('Required', 'All field all required',
+    } else if (_titlecontroller.text.isEmpty || _notecontroller.text.isEmpty) {
+      Get.snackbar("Required", "All field are required",
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.white,
-          icon: Icon(Icons.warning_amber_rounded));
+          colorText: pinkClr,
+          icon: Icon(
+            Icons.warning_amber_rounded,
+            color: Colors.red,
+          ));
     }
   }
-}
 
-_appBar(BuildContext context) {
-  return AppBar(
-    leading: GestureDetector(
-      onTap: () {
-        Get.back();
-      },
-      child: Icon(Icons.arrow_back_ios),
-    ),
-  );
-}
+  _appBar(BuildContext context) {
+    return AppBar(
+      leading: GestureDetector(
+        onTap: () {
+          Get.back();
+        },
+        child: Icon(
+          Icons.arrow_back_ios,
+          size: 20,
+          color: Get.isDarkMode ? Colors.white : Colors.black,
+        ),
+      ),
+    );
+  }
+
+  _getDatefromuser() async {
+    DateTime? _pickerdate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2015),
+      lastDate: DateTime(2121),
+    );
+
+    if (_pickerdate != null) {
+      setState(() {
+        _selectedDate = _pickerdate;
+        print(_selectedDate);
+      });
+    } else {
+      print('Its null or something as wrong');
+    }
+  }
 
   // _getDateFromUser() async {
   //   DateTime? _pickDate = await showDatePicker(
@@ -163,12 +164,12 @@ _appBar(BuildContext context) {
   //       firstDate: DateTime(2015),
   //       lastDate: DateTime(2121));
 
-    // if (_pickDate != null) {
-    //   setState(() {
-    //     _selectedDate = _pickDate;
-    //     print(_selectedDate);
-    //   });
-    // } else {
-    //   print('its null');
-    // }
-  //}
+  //   if (_pickDate != null) {
+  //     setState(() {
+  //       _selectedDate = _pickDate;
+  //       print(_selectedDate);
+  //     });
+  //   } else {
+  //     print('its null');
+  //   }
+}
