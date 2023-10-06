@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:get/get.dart';
-import 'package:get_x_project/app/commonwidgets/my_button.dart';
-import 'package:get_x_project/app/model/task.dart';
-import 'package:get_x_project/app/modules/home/controllers/home_controller.dart';
 import 'package:get_x_project/app/modules/home/controllers/theme/theme.dart';
 import 'package:get_x_project/app/modules/home/views/inputfield.dart';
 import 'package:intl/intl.dart';
@@ -16,8 +12,8 @@ class AddTaskPage extends StatefulWidget {
 }
 
 class _AddTaskPageState extends State<AddTaskPage> {
-  final TextEditingController _titlecontroller = TextEditingController();
-  final TextEditingController _notecontroller = TextEditingController();
+  final _titlecontroller = TextEditingController();
+  final _notecontroller = TextEditingController();
   DateTime _selecteddate = DateTime.now();
   // final HomeController _homeController = Get.put(HomeController());
   // final _formkey = GlobalKey<FormState>();
@@ -30,7 +26,6 @@ class _AddTaskPageState extends State<AddTaskPage> {
   // final TextEditingController _placecontroller = TextEditingController();
   // final TextEditingController _addresscontroller = TextEditingController();
 
-  DateTime _selectedDate = DateTime.now();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,13 +47,13 @@ class _AddTaskPageState extends State<AddTaskPage> {
                   controller: _titlecontroller,
                 ),
                 MyInputField(
-                  title: 'Npte',
+                  title: 'Note',
                   hint: 'Enter your note',
                   controller: _notecontroller,
                 ),
                 MyInputField(
                   title: 'Date',
-                  hint: DateFormat.yMd().format(_selectedDate),
+                  hint: DateFormat.yMd().format(_selecteddate),
                   widget: IconButton(
                       onPressed: () {
                         _getDatefromuser();
@@ -149,27 +144,11 @@ class _AddTaskPageState extends State<AddTaskPage> {
 
     if (_pickerdate != null) {
       setState(() {
-        _selectedDate = _pickerdate;
-        print(_selectedDate);
+        _selecteddate = _pickerdate;
+        print(_selecteddate);
       });
     } else {
       print('Its null or something as wrong');
     }
   }
-
-  // _getDateFromUser() async {
-  //   DateTime? _pickDate = await showDatePicker(
-  //       context: context,
-  //       initialDate: DateTime.now(),
-  //       firstDate: DateTime(2015),
-  //       lastDate: DateTime(2121));
-
-  //   if (_pickDate != null) {
-  //     setState(() {
-  //       _selectedDate = _pickDate;
-  //       print(_selectedDate);
-  //     });
-  //   } else {
-  //     print('its null');
-  //   }
 }

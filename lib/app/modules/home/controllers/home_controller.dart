@@ -4,14 +4,18 @@ import 'package:get_x_project/app/model/database.dart';
 import 'package:get_x_project/app/model/task.dart';
 
 class HomeController extends GetxController {
+  final DbHelper dbHelper = DbHelper();
+
   @override
   void onReady() {
     super.onReady();
   }
 
-  Future<int> addTask({Task? task}) async{
-    return await DBHelper.insert(task);
-  }
+  void refreshnotes() async {}
+
+  // Future<int> addTask({Task? task}) async{
+  //   return await DatabaseHelper.insertUser();
+  // }
 
   // final RxList tasklist = <Task>[].obs;
 
