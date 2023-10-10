@@ -19,6 +19,8 @@ dependencies:
   fan_floating_menu: ^0.0.1
   intl: ^0.18.1
   path: ^1.8.3
+  get_storage: ^2.1.1
+  flutter_staggered_animations: ^1.1.1
 
 dev_dependencies: 
   flutter_lints: ^2.0.0

@@ -7,7 +7,8 @@ import 'app/routes/app_pages.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await DBHelper.initDb();
+  
+  await DbHelper.initDb();
   runApp(
     const MyApp(),
   );

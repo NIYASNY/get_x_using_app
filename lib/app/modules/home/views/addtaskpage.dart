@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_x_project/app/commonwidgets/my_button.dart';
+import 'package:get_x_project/app/model/task.dart';
+import 'package:get_x_project/app/modules/home/controllers/home_controller.dart';
 import 'package:get_x_project/app/modules/home/controllers/theme/theme.dart';
 import 'package:get_x_project/app/modules/home/views/inputfield.dart';
 import 'package:intl/intl.dart';
@@ -15,7 +18,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
   final _titlecontroller = TextEditingController();
   final _notecontroller = TextEditingController();
   DateTime _selecteddate = DateTime.now();
-  // final HomeController _homeController = Get.put(HomeController());
+  final HomeController _homeController = Get.put(HomeController());
   // final _formkey = GlobalKey<FormState>();
 
   // final TextEditingController _notecontroller = TextEditingController();
@@ -23,8 +26,8 @@ class _AddTaskPageState extends State<AddTaskPage> {
   // final TextEditingController _placecontroller = TextEditingController();
   // final TextEditingController _addresscontroller = TextEditingController();
   // final TextEditingController _positioncontroller = TextEditingController();
-  // final TextEditingController _placecontroller = TextEditingController();
-  // final TextEditingController _addresscontroller = TextEditingController();
+  final TextEditingController _placecontroller = TextEditingController();
+  final TextEditingController _addresscontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -65,12 +68,12 @@ class _AddTaskPageState extends State<AddTaskPage> {
                 MyInputField(
                   title: 'Place',
                   hint: 'Enter your place',
-                  // controller: _placecontroller,
+                  controller: _placecontroller,
                 ),
                 MyInputField(
                   title: 'Address',
                   hint: 'Enter your Address',
-                  // controller: _addresscontroller,
+                  controller: _addresscontroller,
                 ),
                 SizedBox(
                   height: 18,
@@ -78,21 +81,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    // MyButton(label: 'Create Task', onTap: () => _validadata())
-                    TextButton(
-                        onPressed: () async {
-                          _validadata();
-                          // if (_formkey.currentState!.validate()) {
-                          //   final Task task = Task();
-                          //   _addTaskToDb(task);
-                          //   await _taskcontroller.addTask(task);
-                          //   Get.back();
-                          // }
-                        },
-                        child: Text(
-                          'Create Task',
-                          style: HeadingStyle,
-                        ))
+                    MyButton(label: 'Create Task', onTap: () => _validadata())
                   ],
                 )
               ],
@@ -105,6 +94,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
 
   _validadata() {
     if (_titlecontroller.text.isNotEmpty && _notecontroller.text.isNotEmpty) {
+      _addtoDb();
       //add databa...
       Get.back();
     } else if (_titlecontroller.text.isEmpty || _notecontroller.text.isEmpty) {
@@ -117,6 +107,18 @@ class _AddTaskPageState extends State<AddTaskPage> {
             color: Colors.red,
           ));
     }
+  }
+
+  _addtoDb() async {
+    int value = await _homeController.addTask(
+        task: Task(
+      note: _notecontroller.text,
+      title: _titlecontroller.text,
+      date: DateFormat.yMd().format(_selecteddate),
+      address: _addresscontroller.text,
+      place: _placecontroller.text,
+    ));
+    print("my id is $value");
   }
 
   _appBar(BuildContext context) {

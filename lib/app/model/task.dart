@@ -35,15 +35,26 @@ class Task {
   //   return data;
   // }
 
+  // Map<String, dynamic> toMap() {
+  //   return {
+  //     "id": id,
+  //     "title": title,
+  //     "note": note,
+  //     "date": date,
+  //     "place": place,
+  //     "address": address,
+  //   };
+  // }
+
   Map<String, dynamic> toMap() {
-    return {
-      "id": id,
-      "title": title,
-      "note": note,
-      "date": date,
-      "place": place,
-      "address": address,
-    };
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['title'] = this.title;
+    data['note'] = this.note;
+    data['date'] = this.date;
+    data['place'] = this.place;
+    data['address'] = this.address;
+    return data;
   }
 
   Task.fromMap(Map<String, dynamic> task) {

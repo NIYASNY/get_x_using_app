@@ -68,11 +68,7 @@ class _SigninState extends State<Signin> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 25),
-                // MyButton(
-                //   onTap: () {},
-                // ),
-                // MyButton(label: , onTap: () {}),
+                // const SizedBox(height: 25),
                 const SizedBox(height: 50),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
